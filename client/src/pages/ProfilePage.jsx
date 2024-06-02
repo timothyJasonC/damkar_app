@@ -23,12 +23,23 @@ export default function ProfilePage() {
     if (ready && !user) {
         return <Navigate to={'/login'} />
     }
+
+    function test() {
+        fetch('http://localhost/damkar/api/test.php', {
+            credentials: "include",
+            method: "POST"
+        })
+    }
+
     return (
         <div>
             <div className="text-center max-w-lg mx-auto">
                 Logged in as {user.name} ({user.email}) <br />
                 <button onClick={logout} className="primary max-w-sm mt-2">Logout</button>
             </div>
+
+            <button onClick={test} className="primary max-w-sm mt-2">test</button>
+
         </div>
     )
 }
