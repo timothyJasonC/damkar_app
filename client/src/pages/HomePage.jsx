@@ -1,11 +1,15 @@
-import React from 'react';
+import { useContext } from 'react'
+import { UserContext } from '../UserContext'
 import Gmaps from '../components/gmaps';
 import Carausel from '../components/carausel';
 import Navbar from '../components/navbar';
 import Resume from '../components/resume';
 import About from '../components/about';
 
+
 export default function HomePage() {
+  const {user} = useContext(UserContext)
+  console.log(user);
   return (
     <div className="flex flex-col h-screen">
       <div>
