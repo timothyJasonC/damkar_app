@@ -2,9 +2,11 @@
 
 include 'service/connection.php';
 
-header("Access-Control-Allow-Origin: *");
+
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Content-Type: application/json");
 
 $postData = file_get_contents("php://input");
@@ -24,7 +26,6 @@ if ($email && $password) {
             $data = $result->fetch_assoc();
 
             setcookie('user_id', $data['id'], time() + (86400 * 30), "/"); 
-            setcookie('name', $data['name'], time() + (86400 * 30), "/"); 
             $response['user'] = $data;
         } else {
             $response['user'] = 'Akun tidak ada';
