@@ -20,15 +20,17 @@ export default function ProfilePage() {
         return <div>Loading...</div>
     }
 
-    if (ready && !user) {
-        return <Navigate to={'/login'} />
-    }
+    // if (ready && !user) {
+    //     return <Navigate to={'/login'} />
+    // }
     return (
         <div>
             <div className="text-center max-w-lg mx-auto">
-                Logged in as {user.name} ({user.email}) <br />
-                <button onClick={logout} className="primary max-w-sm mt-2">Logout</button>
+                {/* Logged in as {user.name} ({user.email}) <br /> */}
+                <button onClick={logout} className="bg-primary py-2 px-4 rounded-md max-w-sm mt-2">Logout</button>
             </div>
+            {/* components user */}
+            {/*components admin */}
         </div>
     )
 }
