@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col h-screen">
       <div>
-        <Navbar/>
+        {/* <Navbar/> */}
       </div>
       <div className="flex-1 flex justify-between relative">
         <div className="border w-1/2">
@@ -23,7 +23,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-            <Resume/>
+            {/* <Resume/> */}
       <Gmaps />
     </div>
   );
