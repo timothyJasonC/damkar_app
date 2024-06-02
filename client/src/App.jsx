@@ -5,6 +5,8 @@ import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import { UserContextProvider } from "./UserContext"
 import ProfilePage from "./pages/ProfilePage"
+import AlertPage from "./pages/AlertPage"
+import EditAlert from "./pages/EditAlert"
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/alert/:id' element={<AlertPage />} />
+          <Route path='/edit/:id' element={<EditAlert />} />
         </Route>
       </Routes>
     </UserContextProvider>

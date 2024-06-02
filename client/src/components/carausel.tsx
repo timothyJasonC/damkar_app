@@ -29,23 +29,14 @@ const TestimoniCarousel = () => {
   ];
 
   return (
-    <article className="testimonial-carousel-container">
-      <header>
-      </header>
-      <section className="testimonial-carousel" style={{ marginBottom: '40px' }}>
+    <article className="">
+      <section className="py-4 md:py-12 px-2 md:px-4" >
         <ResponsiveCarousel showThumbs={false} autoPlay={true} infiniteLoop={true} showIndicators={false} className="testimonial-carousel">
           {testimoni.map((item, index) => (
-            <div key={index} className="testimonial-item">
-              <a href="#">
-                <figure className="testimonial-img">
-                  <div className="testimonial-icon-box">
-                    <IonIcon icon={chatbubbleOutline} />
-                  </div>
-                  <img src={item.gambar} alt="testimoni" loading="lazy" style={{ maxWidth: '30%', maxHeight: '30%' }} className='p-10'/>
-                </figure>
-                <h3 className="my-4">{item.kutipan}</h3>
-                <p className="testimonial-author">{item.nama}</p>
-              </a>
+            <div key={index} className="">
+                <img src={item.gambar} alt="testimoni" loading="lazy" className='p-10 sm:max-w-96 min-w-20' />
+                <h3 className="text-sm md:text-xl text-center">{item.kutipan}</h3>
+                <p className="text-xs md:text-xl">{item.nama}</p>
             </div>
           ))}
         </ResponsiveCarousel>
