@@ -1,34 +1,21 @@
-import { useContext } from 'react'
-import { UserContext } from '../UserContext'
-import Gmaps from '../components/gmaps';
+import { useContext } from 'react';
+import { UserContext } from '../UserContext';
 import Carausel from '../components/carausel';
-import Navbar from '../components/navbar';
-import Resume from '../components/resume';
 import About from '../components/about';
-
+import Gmaps from '../components/gmaps';
 
 export default function HomePage() {
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
   console.log(user);
   return (
     <div className="flex flex-col h-screen">
-      <div>
-        <Navbar/>
+      <div className="border w-full h-full bg-red-700 flex flex-col rounded-xl mb-4">
+        <About />
       </div>
-      <div className="flex-1 flex justify-between relative">
-        <div className="border w-1/2">
-          <img src="/pict/test.jpg" alt="pict" />
-        </div>
-        <div className="border w-1/2 h-[106vh] bg-red-700 relative flex flex-col">
-          <About/>
-          <div className="flex-grow"></div> {/* Ini untuk mengisi ruang kosong */}
-          <div className="h-[45vh] border-t-4 border-b-4 bg-blue-800">
-            <Carausel/>
-          </div>
-        </div>
+      <div className="border w-full bg-blue-800 flex flex-col rounded-xl">
+        <Carausel />
       </div>
-            <Resume/>
-      <Gmaps />
+      <Gmaps/>
     </div>
   );
 }

@@ -1,79 +1,57 @@
-// Carousel.js
 import React from 'react';
+import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { IonIcon } from '@ionic/react';
-import { eyeOutline } from 'ionicons/icons';
+import { chatbubbleOutline } from 'ionicons/icons';
 
-const Carousel = () => {
+const TestimoniCarousel = () => {
+  const testimoni = [
+    {
+      kutipan: "Menggunakan layanan damkar.net adalah perubahan besar untuk keselamatan komunitas kami.",
+      nama: "John Doe",
+      gambar: "./pict/logo-1-color.png"
+    },
+    {
+      kutipan: "Waktu respons dan profesionalisme sangat luar biasa. Sangat direkomendasikan!",
+      nama: "Jane Smith",
+      gambar: "./pict/logo-2-color.png"
+    },
+    {
+      kutipan: "Layanan yang andal dan efisien yang seharusnya dimiliki oleh setiap kota.",
+      nama: "Carlos Rodriguez",
+      gambar: "./pict/logo-3-color.png"
+    },
+    {
+      kutipan: "Tim mereka cepat dan sangat mendukung selama keadaan darurat kami.",
+      nama: "Li Wei",
+      gambar: "./pict/logo-4-color.png"
+    }
+  ];
+
   return (
-    <article className="portfolio" data-page="portfolio">
+    <article className="testimonial-carousel-container">
       <header>
-        <h2 className="h2 article-title">Gallery</h2>
       </header>
-      <section className="projects" style={{ display: 'flex', flexDirection: 'column' }}>
-        <div className="filter-list" style={{ display: 'flex', gap: '10px' }}>
-          <div className="filter-item">
-            <button className="active" data-filter-btn>All</button>
-          </div>
-          <div className="filter-item">
-            <button data-filter-btn>Design</button>
-          </div>
-          <div className="filter-item">
-            <button data-filter-btn>Photos</button>
-          </div>
-        </div>
-        <div className="project-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-          <div className="project-item active" data-filter-item data-category="design">
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <IonIcon icon={eyeOutline} />
-                </div>
-                <img src="./pict/logo-1-color.png" alt="design" loading="lazy" />
-              </figure>
-              <h3 className="project-title">Fire Truck Design</h3>
-              <p className="project-category">Design</p>
-            </a>
-          </div>
-          <div className="project-item active" data-filter-item data-category="design">
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <IonIcon icon={eyeOutline} />
-                </div>
-                <img src="./pict/logo-2-color.png" alt="design" loading="lazy" />
-              </figure>
-              <h3 className="project-title">Mobile App</h3>
-              <p className="project-category">Design</p>
-            </a>
-          </div>
-          <div className="project-item active" data-filter-item data-category="photos">
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <IonIcon icon={eyeOutline} />
-                </div>
-                <img src="./pict/logo-3-color.png" alt="design" loading="lazy" />
-              </figure>
-              <h3 className="project-title">City Night</h3>
-              <p className="project-category">Photos</p>
-            </a>
-          </div>
-          <div className="project-item active" data-filter-item data-category="design">
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <IonIcon icon={eyeOutline} />
-                </div>
-                <img src="./pict/logo-4-color.png" alt="design" loading="lazy" />
-              </figure>
-              <h3 className="project-title">Web Design</h3>
-              <p className="project-category">Design</p>
-            </a>
-          </div>
-        </div>
+      <section className="testimonial-carousel" style={{ marginBottom: '40px' }}>
+        <ResponsiveCarousel showThumbs={false} autoPlay={true} infiniteLoop={true} showIndicators={false} className="testimonial-carousel">
+          {testimoni.map((item, index) => (
+            <div key={index} className="testimonial-item">
+              <a href="#">
+                <figure className="testimonial-img">
+                  <div className="testimonial-icon-box">
+                    <IonIcon icon={chatbubbleOutline} />
+                  </div>
+                  <img src={item.gambar} alt="testimoni" loading="lazy" style={{ maxWidth: '30%', maxHeight: '30%' }} className='p-10'/>
+                </figure>
+                <h3 className="my-4">{item.kutipan}</h3>
+                <p className="testimonial-author">{item.nama}</p>
+              </a>
+            </div>
+          ))}
+        </ResponsiveCarousel>
       </section>
     </article>
   );
 };
 
-export default Carousel;
+export default TestimoniCarousel;
