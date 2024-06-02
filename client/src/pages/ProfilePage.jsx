@@ -5,6 +5,8 @@ import { Navigate } from 'react-router-dom'
 export default function ProfilePage() {
     const { ready, user, setUser } = useContext(UserContext)
 
+    
+
     function logout() {
         fetch('http://localhost/damkar/api/logout.php', {
             credentials: "include",
