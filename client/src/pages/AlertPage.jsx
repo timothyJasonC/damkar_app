@@ -63,18 +63,25 @@ export default function AlertPage() {
         setShowConfirmationDialog(true);
     };
 
-    const confirmDelete = () => {
+    const confirmDelete = async(e) => {
+        e.preventDefault()
+        
         // Lakukan aksi penghapusan di sini
         setShowConfirmationDialog(false);
     };
 
     const cancelDelete = () => {
         setShowConfirmationDialog(false);
+        window.location.reload()
     };
 
     return (
         <section className="mx-auto flex flex-col gap-4 w-full p-6 bg-white shadow-lg rounded-lg my-10">
-            <div ref={mapRef} style={{ height: '400px', width: '100%', marginTop: '20px' }}></div>
+            {showConfirmationDialog ? (
+                <div className='opacity-0' ref={mapRef} style={{ height: '400px', width: '100%', marginTop: '20px' }}></div>
+            ) : (
+                <div ref={mapRef} style={{ height: '400px', width: '100%', marginTop: '20px' }}></div>
+            )}
             <div className='flex justify-end gap-6 px-12'>
                 <Link to={'/edit/' + id} className="text-white w-10 bg-black bg-opacity-20 rounded-2xl p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
