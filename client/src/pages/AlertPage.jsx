@@ -1,48 +1,50 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 
 export default function AlertPage() {
-    const { id } = useParams()
-    const [alert, setAlert] = useState([])
+    const { id } = useParams();
+    const [alerts, setAlerts] = useState([]);
     const mapRef = useRef(null);
     const mapInstanceRef = useRef(null);
     const markerRef = useRef(null);
-    const navigate = useNavigate()
-    const { user } = useContext(UserContext)
+    const navigate = useNavigate();
+    const { user } = useContext(UserContext);
     const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
 
-    if (user?.isAdmin == false || user === null) {
-        navigate('/')
-    }
+    useEffect(() => {
+        if (user?.isAdmin === false || user === null) {
+            navigate('/');
+        }
+    }, [user, navigate]);
 
     const getAlert = async () => {
         const data = await fetch('http://localhost/damkar/api/get_alert_by_id.php', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({ id: id }),
-            headers: { 'Content-Type': 'application/json' }
-        })
-        const res = await data.json()
-        setAlert(res.alert)
-    }
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const res = await data.json();
+        setAlerts(res.alert);
+    };
 
     useEffect(() => {
-        getAlert()
-    }, [])
+        getAlert();
+    }, [id]);
 
     useEffect(() => {
         if (mapRef.current && !mapInstanceRef.current) {
             mapInstanceRef.current = L.map(mapRef.current).setView([51.505, -0.09], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             }).addTo(mapInstanceRef.current);
         }
     }, []);
 
     useEffect(() => {
-        if (alert.location && mapInstanceRef.current) {
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${alert.location}`)
+        if (alerts.location && mapInstanceRef.current) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${alerts.location}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0) {
@@ -57,22 +59,34 @@ export default function AlertPage() {
                     }
                 });
         }
-    }, [alert.location]);
+    }, [alerts?.location]);
 
     const deleteAlert = () => {
         setShowConfirmationDialog(true);
     };
 
-    const confirmDelete = async(e) => {
-        e.preventDefault()
-        
-        // Lakukan aksi penghapusan di sini
+    const confirmDelete = async (e) => {
+        e.preventDefault();
+        const response = await fetch('http://localhost/damkar/api/delete_alert.php', {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify({ id: id }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const res = await response.json();
+        console.log(res);
+        if (res.message === 'Alert berhasil dihapus') {
+            alert(res.message);
+            navigate('/profile');
+        } else {
+            alert(res.message);
+        }
         setShowConfirmationDialog(false);
     };
 
     const cancelDelete = () => {
         setShowConfirmationDialog(false);
-        window.location.reload()
+        window.location.reload();
     };
 
     return (
@@ -88,7 +102,7 @@ export default function AlertPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                     </svg>
                 </Link>
-                <button onClick={deleteAlert} className="text-red-500  w-10 bg-black bg-opacity-20 rounded-2xl p-2">
+                <button onClick={deleteAlert} className="text-red-500 w-10 bg-black bg-opacity-20 rounded-2xl p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                     </svg>
@@ -96,25 +110,24 @@ export default function AlertPage() {
             </div>
             <div className="mb-6">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Location : {alert.location}
+                    Location: {alerts.location}
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Client : {alert.client}
+                    Client: {alerts.client}
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Author : {alert.author}
+                    Author: {alerts.author}
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Message : {alert.message}
+                    Message: {alerts.message}
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Contact : {alert.contact}
+                    Contact: {alerts.contact}
                 </label>
             </div>
 
-
             {showConfirmationDialog && (
-                <div className="fixed -top-10 z-50 inset-0 overflow-y-auto">
+                <div className="fixed z-50 inset-0 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div className="fixed inset-0 transition-opacity" aria-hidden="true">
                             <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -148,5 +161,5 @@ export default function AlertPage() {
                 </div>
             )}
         </section>
-    )
+    );
 }

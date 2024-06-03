@@ -7,6 +7,7 @@ import { UserContextProvider } from "./UserContext"
 import ProfilePage from "./pages/ProfilePage"
 import AlertPage from "./pages/AlertPage"
 import EditAlert from "./pages/EditAlert"
+import CreateNews from "./pages/CreateNews"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/alert/:id' element={<AlertPage />} />
           <Route path='/edit/:id' element={<EditAlert />} />
+          <Route path='/create' element={<CreateNews />} />
         </Route>
       </Routes>
     </UserContextProvider>
