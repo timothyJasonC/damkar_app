@@ -24,10 +24,10 @@ export default function PhotoUploader({ file, setFile }) {
     return (
         <div>
             <div className="flex items-center w-full justify-center border-black border-2 h-72 cursor-pointer flex-col overflow-hidden rounded-xl bg-grey-50">
-                {previewImage ? (
+                {file !== null ? (
                     <div className="relative flex h-full w-full justify-center">
                         <img
-                            src={previewImage}
+                            src={previewImage || file}
                             alt="image"
                             width={250}
                             height={250}

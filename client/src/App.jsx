@@ -7,7 +7,10 @@ import { UserContextProvider } from "./UserContext"
 import ProfilePage from "./pages/ProfilePage"
 import AlertPage from "./pages/AlertPage"
 import EditAlert from "./pages/EditAlert"
+import ServiceUser from "./pages/serviceUser"
 import CreateNews from "./pages/CreateNews"
+import NewsPage from "./pages/NewsPage"
+import EditNews from "./pages/EditNews"
 
 function App() {
 
@@ -21,7 +24,11 @@ function App() {
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/alert/:id' element={<AlertPage />} />
           <Route path='/edit/:id' element={<EditAlert />} />
+          <Route path='/layanan' element={<ServiceUser />} />
           <Route path='/create' element={<CreateNews />} />
+          <Route path='/news/:id' element={<NewsPage />} />
+          <Route path='/edit_news/:id' element={<EditNews />} />
+
         </Route>
       </Routes>
     </UserContextProvider>
