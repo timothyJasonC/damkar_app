@@ -13,7 +13,12 @@ export default function Header() {
                 </svg>
                 <span className='font-bold text-xl'>Damkar</span>
             </Link>
-           
+           <div>
+            <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">About</Link>
+            <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">Create</Link>
+            <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">News</Link>
+            <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">Testimonials</Link>
+           </div>
             <Link to={user != null ? '/profile' : '/login'} className='flex items-center gap-2 border border-black rounded-full py-2 px-4'>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

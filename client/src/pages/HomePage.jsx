@@ -2,7 +2,8 @@ import { useContext } from 'react';
 import { UserContext } from '../UserContext';
 import Carausel from '../components/carausel';
 import About from '../components/about';
-import Gmaps from '../components/gmaps';
+import Resume from '../components/resume';
+
 
 export default function HomePage() {
   const { user } = useContext(UserContext);
@@ -13,7 +14,7 @@ export default function HomePage() {
       <div className="border w-full bg-gray-500 flex flex-col rounded-xl">
         <Carausel />
       </div>
-      {/* <Gmaps/> */}
+      <Resume/>
     </div>
   );
 }
