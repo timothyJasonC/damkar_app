@@ -20,20 +20,24 @@ const About = () => {
       <section className="w-full max-w-6xl">
         <h3 className="text-2xl md:text-4xl font-semibold text-gray-900 mb-8 text-center">Services</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-            <img src="./pict/icon-design.svg" alt="design icon" width="60" className="rounded-full border border-gray-300 p-2 shadow-md mb-4" />
-            <h4 className="text-xl md:text-2xl font-medium text-gray-900">Pelatihan Pemadam Kebakaran</h4>
-            <p className="text-base md:text-lg text-gray-700 mt-2">
-              Kami menyediakan program pelatihan yang komprehensif untuk pemadam kebakaran, yang mencakup teknik pemadaman api, penyelamatan, dan penggunaan alat pemadam kebakaran.
-            </p>
-          </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-            <img src="./pict/icon-photo.svg" alt="camera icon" width="60" className="rounded-full border border-gray-300 p-2 shadow-md mb-4" />
-            <h4 className="text-xl md:text-2xl font-medium text-gray-900">Konsultasi Keamanan Kebakaran</h4>
-            <p className="text-base md:text-lg text-gray-700 mt-2">
-              Layanan konsultasi kami membantu bisnis dan komunitas dalam menilai risiko kebakaran dan mengembangkan rencana keselamatan kebakaran yang efektif.
-            </p>
-          </div>
+          <Link to={'/layanan'} className="link-wrapper">
+            <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+              <img src="./pict/icon-design.svg" alt="design icon" width="60" className="rounded-full border border-gray-300 p-2 shadow-md mb-4" />
+              <h4 className="text-xl md:text-2xl font-medium text-gray-900">Pelatihan Pemadam Kebakaran</h4>
+              <p className="text-base md:text-lg text-gray-700 mt-2">
+                Kami menyediakan program pelatihan yang komprehensif untuk pemadam kebakaran, yang mencakup teknik pemadaman api, penyelamatan, dan penggunaan alat pemadam kebakaran.
+              </p>
+            </div>
+          </Link>
+          <Link to={'/layanan'} className="link-wrapper">
+            <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+              <img src="./pict/icon-photo.svg" alt="camera icon" width="60" className="rounded-full border border-gray-300 p-2 shadow-md mb-4" />
+              <h4 className="text-xl md:text-2xl font-medium text-gray-900">Konsultasi Keamanan Kebakaran</h4>
+              <p className="text-base md:text-lg text-gray-700 mt-2">
+                Layanan konsultasi kami membantu bisnis dan komunitas dalam menilai risiko kebakaran dan mengembangkan rencana keselamatan kebakaran yang efektif.
+              </p>
+            </div>
+          </Link>
           <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
             <IonIcon icon={callOutline} style={{ fontSize: '60px', color: '#f56565' }} className="mb-4" />
             <h4 className="text-xl md:text-2xl font-medium text-gray-900">Panggilan Darurat</h4>
