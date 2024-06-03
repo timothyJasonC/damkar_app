@@ -40,11 +40,17 @@ const About = () => {
             <p className="text-base md:text-lg text-gray-700 mt-2">
               Membutuhkan bantuan darurat? Klik tombol di bawah ini untuk memanggil bantuan segera.
             </p>
+            <a
+              href="tel:+6281234567890"
+              className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-full mt-4 transition duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Panggil Darurat
+            </a>
           </div>
         </div>
       </section>
-      <Link to={'profile'} className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 max-w-sm text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-full mt-12 transition duration-300 transform hover:scale-105 shadow-lg">
-        Panggil Darurat
+      <Link to={'/layanan'} className="bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 max-w-sm text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-full mt-12 transition duration-300 transform hover:scale-105 shadow-lg">
+        Lihat Layanan Lainnya
       </Link>
     </article>
   );
