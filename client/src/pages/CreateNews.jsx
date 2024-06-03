@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import PhotoUploader from '../components/photoUploader'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import 'react-quill/dist/quill.snow.css'
+import Editor from '../components/Editor';
 
 
 export default function CreateNews() {
-  const [file, setFile] = useState('')
+  const [file, setFile] = useState(null)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const navigate = useNavigate()
@@ -43,15 +45,10 @@ export default function CreateNews() {
             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500"
           />
         </label>
+        <div className='bg-white'>
+          <Editor value={content} onChange={setContent} />
+        </div>
 
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          content:
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500"
-          />
-        </label>
         <button
           type="submit"
           className="bg-pink-500 text-white py-2 px-6 rounded-md shadow-lg hover:bg-pink-600 transition duration-200"

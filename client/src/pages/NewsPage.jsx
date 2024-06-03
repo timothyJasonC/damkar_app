@@ -80,23 +80,24 @@ export default function NewsPage() {
             )}
 
 
-            <div className='flex gap-2'>
-                <label className="block text-gray-700 text-lg font-bold mb-2">
+            <div className='flex gap-2 items-center'>
+                <label className="text-gray-700 text-lg font-bold">
                     Author :
                 </label>
                 <p>{news.name}</p>
             </div>
-            <div className='flex gap-2'>
-                <label className="block text-gray-700 text-lg font-bold mb-2">
+            <div className='flex gap-2 items-center'>
+                <label className="text-gray-700 text-lg font-bold">
                     Created At :
                 </label>
                 <p>{news.created_at}</p>
             </div>
             <div>
-                <label className="block text-gray-700 text-lg font-bold mb-2">
+                <label className="text-gray-700 text-lg font-bold">
                     content :
                 </label>
-                <p>{news.content}</p>
+                <div className="truncate h-full" dangerouslySetInnerHTML={{ __html: news.content }} />
+
             </div>
 
             {showConfirmationDialog && (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import PhotoUploader from '../components/photoUploader'
+import Editor from '../components/Editor'
 
 export default function EditNews() {
     const { id } = useParams()
@@ -64,14 +65,9 @@ export default function EditNews() {
                     />
                 </label>
 
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                    content:
-                    <textarea
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500"
-                    />
-                </label>
+                <div className='bg-white'>
+                    <Editor value={content} onChange={setContent} />
+                </div>
                 <button
                     type="submit"
                     className="bg-pink-500 text-white py-2 px-6 rounded-md shadow-lg hover:bg-pink-600 transition duration-200"

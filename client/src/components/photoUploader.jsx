@@ -15,6 +15,7 @@ export default function PhotoUploader({ file, setFile }) {
             reader.readAsDataURL(file);
         }
     }
+    console.log(file)
 
     function removePhoto() {
         setPreviewImage(undefined);

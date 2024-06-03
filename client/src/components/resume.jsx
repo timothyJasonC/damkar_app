@@ -27,8 +27,6 @@ export default function Resume() {
                         <News news={item} />
                     </div>
                 ))}
-                <div>
-                </div>
             </div>
         </div>
     )

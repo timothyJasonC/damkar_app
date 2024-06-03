@@ -19,10 +19,10 @@ export default function Header() {
             {user && user.isAdmin == true ? (
                 <>
                     <div className="hidden md:flex">
-                        <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">About</Link>
-                        <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">Create</Link>
-                        <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">News</Link>
-                        <Link to={"/"} className="mx-4 bg-black text-white px-6 rounded-lg">Testimonials</Link>
+                        <Link to={{ pathname: "/", hash: "about", }} className="mx-4 bg-black text-white px-6 rounded-lg">About</Link>
+                        <Link to={"/create"} className="mx-4 bg-black text-white px-6 rounded-lg">Create</Link>
+                        <Link to={{ pathname: "/", hash: "news", }} className="mx-4 bg-black text-white px-6 rounded-lg">News</Link>
+                        <Link to={{ pathname: "/", hash: "testimonial", }} className="mx-4 bg-black text-white px-6 rounded-lg">Testimonials</Link>
                     </div>
 
                     <div className={`absolute top-20 right-0 w-full bg-white border-t border-gray-300 md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>

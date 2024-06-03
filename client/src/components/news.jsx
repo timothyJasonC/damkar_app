@@ -13,9 +13,9 @@ export default function News({ news }) {
                     <p>by: {news.name}</p>
                     <p>created at: {news.created_at}</p>
                 </div>
-                <h2 className="text-sm md:text-lg">
-                    {news.content}
-                </h2>
+
+                <div className="max-w-sm h-full" dangerouslySetInnerHTML={{ __html: news.content }} />
+
                 <Link to={`/news/${news.news_id}`} className="bg-primary p-2 w-2xl text-white rounded-2xl mb-4 hover:cursor-pointer">baca selengkapnya</Link>
             </div>
         </div>

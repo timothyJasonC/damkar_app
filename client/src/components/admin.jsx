@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import News from "../components/news";
 
 export default function Admin({ user, setUser }) {
     const [alerts, setAlerts] = useState([])
+    const [news, setNews] = useState([])
     const navigate = useNavigate()
 
     const getAlerts = async () => {
@@ -14,8 +16,18 @@ export default function Admin({ user, setUser }) {
         setAlerts(res.alerts)
     }
 
+    const getNews = async () => {
+        const data = await fetch('http://localhost/damkar/api/get_news_admin.php', {
+            method: 'GET',
+            credentials: 'include'
+        })
+        const res = await data.json()
+        setNews(res.news)
+    }
+console.log(news);
     useEffect(() => {
         getAlerts()
+        getNews()
     }, [])
 
     function logout() {
@@ -39,7 +51,6 @@ export default function Admin({ user, setUser }) {
                 </div>
                 <button onClick={logout} className="flex bg-primary w-[5rem] items-center h-12 justify-center text-white rounded-2xl">Logout</button>
             </div>
-            <Link to={'/create'} className="bg-primary p-2 w-full text-center text-white rounded-2xl"> + Create News</Link>
 
             <div className="bg-gradient-to-r from-purple-200 to-pink-200 p-6 rounded-lg shadow-md">
                 <h2 className="text-3xl font-semibold text-gray-800 mb-4">Alerts</h2>
@@ -54,6 +65,20 @@ export default function Admin({ user, setUser }) {
                     ))}
                 </ul>
             </div>
+
+            <Link to={'/create'} className="bg-primary p-2 w-full text-center text-white rounded-2xl"> + Create News</Link>
+
+            <div className="bg-gradient-to-r from-purple-200 to-pink-200 p-6 rounded-lg shadow-md">
+                <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">News</h2>
+                <div className="flex flex-col gap-4">
+                {news.map((item, idx) => (
+                    <div key={idx}>
+                        <News news={item} />
+                    </div>
+                ))}
+            </div>
+            </div>
+            
         </div>
     );
 }
