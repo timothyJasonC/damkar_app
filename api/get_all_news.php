@@ -9,7 +9,7 @@ header("Access-Control-Allow-Methods: GET");
 header("Content-Type: application/json");
 
 try {
-    $sql = 'SELECT news.id AS news_id, news.title AS title, news.content, news.created_at, news.image, users.name FROM news INNER JOIN users ON news.author_id = users.id';
+    $sql = 'SELECT news.id AS news_id, news.title AS title, news.summary, news.created_at, news.image, users.name FROM news INNER JOIN users ON news.author_id = users.id';
     if ($db->query($sql)) {
         $result = $db->query($sql);
         $data = $result->fetch_all(MYSQLI_ASSOC);

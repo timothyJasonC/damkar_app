@@ -11,11 +11,12 @@ header("Content-Type: application/json");
 $title = isset($_POST['title']) ? $_POST['title'] : '';
 $content = isset($_POST['content']) ? $_POST['content'] : '';
 $id = isset($_POST['newsId']) ? $_POST['newsId'] : '';
+$summary = isset($_POST['summary']) ? $_POST['summary'] : '';
 $file = isset($_FILES["file"]) ? $_FILES["file"] : null;
 
 if ($file == null) {
     try {
-        $sql = "UPDATE news SET title='$title', content='$content' WHERE id='$id'";
+        $sql = "UPDATE news SET title='$title', content='$content', summary='$summary' WHERE id='$id'";
         if ($db->query($sql)) {
             echo json_encode(["status" => "success", "message" => "Berita berhasil diedit"]);
         } else {
@@ -49,7 +50,7 @@ if ($file == null) {
         // dan membuat data berita baru
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
             try {
-                $sql = "UPDATE news SET title='$title', content='$content', image='$target_file' WHERE id='$id'";
+                $sql = "UPDATE news SET title='$title', summary='$summary', content='$content', image='$target_file' WHERE id='$id'";
                 if ($db->query($sql)) {
                     echo json_encode(["status" => "success", "message" => "Berita berhasil diedit"]);
                 } else {

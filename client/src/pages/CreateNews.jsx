@@ -9,6 +9,7 @@ export default function CreateNews() {
   const [file, setFile] = useState(null)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [summary, setSummary] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -17,6 +18,7 @@ export default function CreateNews() {
     data.set('file', file)
     data.set('title', title)
     data.set('content', content)
+    data.set('summary', summary)
     const response = await fetch('http://localhost/damkar/api/create_news.php', {
       method: 'POST',
       credentials: 'include',
@@ -42,6 +44,15 @@ export default function CreateNews() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500"
+          />
+        </label>
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Summary:
+          <input
+            type="text"
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500"
           />
         </label>

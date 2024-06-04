@@ -96,7 +96,7 @@ export default function NewsPage() {
                 <label className="text-gray-700 text-lg font-bold">
                     content :
                 </label>
-                <div className="truncate h-full" dangerouslySetInnerHTML={{ __html: news.content }} />
+                <div className="prose lg:prose-xl w-full max-w-none break-words" dangerouslySetInnerHTML={{ __html: news.content }} />
 
             </div>
 
